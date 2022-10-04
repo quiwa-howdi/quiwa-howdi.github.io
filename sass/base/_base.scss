@@ -1,0 +1,43 @@
+//基本設定
+
+//partial sass
+/*RESET用*/
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  /*font-size: 10px;*/ /*初始化rem 讓1rem=10px*/ /*但由於user可以調整font-size，所以會跑掉*/
+  font-size: 62.5%; /*使用%，從16px變成10px 使用者改變root size也可以調整*/
+  //雖然字體大小很像是排版，但這是設定1rem的定義，所以算是base
+  //10px/16px=62.5%
+
+  @include respond(tap-land) {
+    font-size: 56.25%; //1rem = 9px 9/16=56.25%
+  }
+
+  @include respond(tab-port) {
+    font-size: 50%; //1rem = 8px 8/16=50%
+  } //越小(嚴苛)的條件要越後面，才能覆蓋前面的
+
+  @include respond(big-desktop) {
+    font-size: 75%; //1rem = 12px 12/16=75%
+  }
+}
+body {
+  box-sizing: border-box;
+  padding: 3rem; /*盡量在整個畫面留白*/
+
+  @include respond(tab-port) {
+    padding: 0;
+  }
+
+  //選取的文字
+  ::selection {
+    background-color: $color-primary;
+    color: $color-white;
+  }
+}

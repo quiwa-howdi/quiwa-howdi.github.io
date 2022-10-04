@@ -1,0 +1,62 @@
+//header作為美個頁面的頭，可做為layout
+.header {
+  height: 85vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url(../img/hero-small.jpg); /*先的蓋在上面*/
+  background-size: cover;
+
+  position: relative;
+
+  @supports (
+    clip-path: polygon(0 0) or
+      (
+        -webkit-clip-path: polygon(0 0),
+      )
+  ) {
+    height: 95vh;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); //支援部分瀏覽器
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 75vh,
+      0 100%
+    ); /*切割一個多邊形出來，順時針表示每個頂點 可以用resource的CSS clip-path maker*/
+  }
+
+  //-webkit-min-device-pixel-ratio 來支援safari
+  @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+    only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+    only screen and (min-width: 125em) {
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.8),
+        rgba($color-primary-dark, 0.8)
+      ),
+      url(../img/hero.jpg); //高解析度且螢幕寬過600pxd才用高材質 OR //超大螢幕
+  }
+
+  @include respond(phone) {
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  }
+  &__logo-box {
+    position: absolute; /*可用上下左右決定位置*/
+    top: 4rem; /*來自partant的相對位置*/
+    left: 4rem;
+  }
+
+  &__logo {
+    height: 3.5rem;
+  }
+
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50% /*不能用50%，因為50%是框框的起點，要加上長度*/; /*這是相對parent的位置*/
+    transform: translate(-50%, -50%); /*要加上這段*/ /*這段是相對自己的長度*/
+    text-align: center;
+  }
+}

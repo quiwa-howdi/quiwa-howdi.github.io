@@ -1,0 +1,90 @@
+//排版
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 16px; */
+  line-height: 1.7;
+  color: $color-grey-dark;
+}
+
+.heading-primary {
+  color: $color-white;
+  text-transform: uppercase;
+  backface-visibility: hidden; /*3D物件的背面能不能顯示，純粹解決動或可能結束時會抖動的問題........*/
+  margin-bottom: 6rem;
+
+  &--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+
+    animation: moveInLeft;
+    animation-duration: 1s; /*整體持續時間*/
+    animation-timing-function: ease-out;
+    /*animation-delay: 3s; 延遲播放*/
+    /*animation-iteration-count:2 ;重複播放次數*/
+    /*animation-timing-function: ;播放動畫的速度曲線，預設為線性*/
+    @include respond(phone) {
+      letter-spacing: 1rem;
+      font-family: 5rem;
+    }
+  }
+
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    animation: moveInRight 1s ease-out;
+
+    @include respond(phone) {
+      letter-spacing: 0.5rem;
+    }
+  }
+}
+
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+
+  //漸層色
+  display: inline-block; //長度隨內容
+  background-image: linear-gradient(
+    to right,
+    $color-primary-light,
+    $color-primary-dark
+  );
+  -webkit-background-clip: text; //webkit為chrome和Safari的前綴字
+  background-clip: text;
+  color: transparent; //透明，讓後面背景呈現
+  //漸層色結束
+
+  letter-spacing: 2px; //小到可以忽略使用.2rem
+  transition: all 0.2s;
+  @include respond(tab-port) {
+    font-size: 3rem;
+  }
+  @include respond(phone) {
+    font-size: 2.5rem;
+  }
+  &:hover {
+    transform: skewY(2deg) skewX(12deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2);
+  }
+}
+
+//文圖的文字區域
+.heading-tertiary {
+  font-size: $default-font-size;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.paragraph {
+  font-size: $default-font-size;
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+}

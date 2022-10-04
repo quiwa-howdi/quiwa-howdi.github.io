@@ -1,0 +1,26 @@
+//每次只做一件事，可重複使用的css
+.u-center-text {
+  //負責把內容物置中
+  text-align: center !important;
+}
+//3種向下留白的寬度，為了視覺統一性，不要覺得麻煩
+.u-margin-bottom-big {
+  margin-bottom: 8rem !important;
+  @include respond(tab-port) {
+    margin-bottom: 5rem !important;
+  }
+}
+.u-margin-bottom-medium {
+  margin-bottom: 4rem !important;
+  margin-bottom: 3rem !important;
+}
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem !important;
+}
+
+.u-margin-top-big {
+  margin-top: 8rem !important;
+}
+.u-margin-top-huge {
+  margin-top: 10rem !important;
+}
